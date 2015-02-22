@@ -20,7 +20,7 @@ syn match giftComment "\/\/.*$" contains=giftTodo
 " GIFT blocks 
 "------------------------------------------------------------------------/
 syn region giftFormat oneline start='\[' end='\]'
-syn region giftTitle start='::' end='::' nextgroup=giftQuestion 
+syn region giftTitle start='^::' end='::' nextgroup=giftQuestion 
 " syn region giftQuestion start='::' end='{' skip='\\{' nextgroup=giftAnswers
 syn region giftAnswers start='{' skip='\\}' end='}' keepend contains=giftAnswer
 syn region giftAnswer start='=' skip='\\\~' end='\(.*[^~]\)' 
@@ -33,7 +33,7 @@ let b:current_syntax = "gift"
 
 hi def link giftComment         Comment
 hi def link giftTodo            Todo
-hi def link giftFormat          PreProc 
+hi def link giftFormat          LineNr
 hi def link giftTitle           Title
 hi def link giftAnswers         MoreMsg
 hi def link giftQuestion        ModeMsg
