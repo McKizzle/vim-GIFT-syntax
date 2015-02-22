@@ -1,7 +1,7 @@
 " Vim syntax file
-" Language:     Moodle GIFT (General Import FormaT)
-" Maintainer:   Clinton McKay
-" Latest Revision: 21 February 2015
+" Language:         Moodle GIFT (General Import Format Template)
+" Maintainer:       Clinton McKay
+" Latest Revision:  21 February 2015
 
 if exists("b:current_syntax")
   syntax on!
