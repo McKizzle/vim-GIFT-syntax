@@ -1,0 +1,24 @@
+// Multiple Choice
+::Multiple Choice 1::[html]What is the correct answer to this question?{
+        ~[html]incorrect.
+        =[html]correct.
+        ~incorrect.
+        ~correct.
+}
+
+// Multiple Choice
+::Multiple Choice 2::What is the correct answer to this question?{
+        ~[html]incorrect.
+        =[html]correct.
+        ~incorrect.
+        ~correct.
+}
+
+// Multiple Choice Single line.
+::Multiple Choice 3::[html]What is the correct answer to this question?{
+        ~[html]incorrect. =[html]correct. ~incorrect. ~correct.
+}
+
+// Multiple Choice More Condensed.
+::Multiple Choice 4::[html]What is the correct answer to this question?{ ~[html]incorrect. =[html]correct. ~incorrect. ~correct. }
+

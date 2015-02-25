@@ -7,25 +7,26 @@ if exists("b:current_syntax")
   finish
 endif
 
-" set conceallevel=1
+let conceallevel = 1
 
 "------------------------------------------------------------------------/
 " GIFT Comments
 "------------------------------------------------------------------------/
 syn keyword giftTodo      containedin=giftComment contained TODO FIXME XXX NOTE
 syn match   giftComment   "\/\/.*$" contains=giftTodo
-syn match   giftFormat    "\[.*\]" " conceal cchar=⥊
+syn match   giftFormat    "\[.\{-}\]" conceal cchar=⥊ containedin=giftProblem
+syn match   giftTitle     /^::.\{-}::/ containedin=giftProblem
 
 "------------------------------------------------------------------------/
 " GIFT blocks 
 "------------------------------------------------------------------------/
-" syn region giftFormat oneline start='\[' end='\]'
-syn region giftTitle    start='^::' end='::' nextgroup=giftQuestion 
-" syn region giftQuestion start='::' end='{' skip='\\{' nextgroup=giftAnswers
-syn region giftAnswers  start='{'   end='}'           skip='\\}' keepend 
-  \ contains=giftAnswer
-syn region giftAnswer   start='='   end='\(.*[^~]\)'  skip='\\\~' 
-  \ containedin=giftAnswers  contained
+syn region giftProblem start=/^::/hs=s+1 end=/}/ skip='\\}' keepend contains=giftAnswers
+syn region giftAnswers start='{'         end=/}/he=e-1 skip='\\}' keepend concealends
+  \ containedin=giftProblem contains=giftFormat
+syn region giftCorrect   start='='   end=/\(\s*\)\+[~]/he=e-1  skip='\\\~|\\\='
+  \ containedin=giftAnswers contains=giftFormat
+syn region giftIncorrect start='[~]'   end=/\(\s*\)\+[=]/he=e-1  skip='\\\~|\\\='
+  \ containedin=giftAnswers contains=giftFormat
 
 "------------------------------------------------------------------------/
 " Setup syntax highlighting
@@ -36,8 +37,9 @@ hi def link giftComment     Comment
 hi def link giftTodo        Todo
 hi def link giftTitle       Title
 hi def link giftAnswers     MoreMsg
-hi def link giftQuestion    ModeMsg
-hi def link giftAnswer      DiffText
+hi def link giftProblem     ModeMsg
+hi def link giftCorrect     Identifier 
+hi def link giftIncorrect   Constant
 hi def link giftFormat      LineNr
 
 
